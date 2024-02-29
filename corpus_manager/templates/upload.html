@@ -1,0 +1,33 @@
+<!-- upload_download.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload/Download</title>
+</head>
+{% load auth_extras %}
+<body>
+    {% if request.user|has_group:"Data Manager" %}
+    <div>
+        <h1>Upload/Download Parallel Texts</h1>
+        
+        <!-- Upload Form -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="file" accept=".csv, .txt">
+            <button type="submit">Upload</button>
+        </form>
+
+        <!-- Download Links -->
+        <h2>Download Parallel Texts:</h2>
+        <ul>
+                <li><a href="">Download</a></li>
+        </ul>
+    </div>
+    {% else %}
+    <h1>Permission Denied</h1>
+    {% endif %}
+</body>
+</html>

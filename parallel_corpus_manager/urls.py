@@ -14,11 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# parallel_corpus_manager/urls.py
 
-from django.urls import path
-from corpus_manager import views
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path('api/parallel-texts/', views.ParallelTextListCreate.as_view(), name='parallel-text-list-create'),
+    path("admin/", admin.site.urls),
+    path("", include('corpus_manager.urls')),
 ]

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+{% load auth_extras %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<body>
+    <div class="container">
+        <p>Hello! {{request.user}}
+        <a href="{% url 'logout' %}"><button id="new">Logout</button></a>
+        </p>
+
+        <h1>Parallel Corpus</h1>
+        <table id="customers" border="1">
+            <thead>
+                <th>Source Text</th>
+                <th>Target Text</th>
+                <th>Created at</th>
+                <th>Verify_1</th>
+                <th>Verify_2</th>
+                <th>Verify_3</th>
+                <th>Verify_4</th>
+                <th>Verify_5</th>
+                <th colspan="2" id="mid">Action</th>
+            </thead>
+            {% for parallel_text in parallel_texts %}
+            <tr>
+                <td>{{ parallel_text.source_text }}</td>
+                <td>{{ parallel_text.target_text }}</td>
+                <td>{{ parallel_text.created_at }}</td>
+                <td>{{ parallel_text.verification1 }}</td>
+                <td>{{ parallel_text.verification2 }}</td>
+                <td>{{ parallel_text.verification3 }}</td>
+                <td>{{ parallel_text.verification4 }}</td>
+                <td>{{ parallel_text.verification5 }}</td>
+                <td>
+                    <a href="update/{{parallel_text.id}}"><button id="up">Update</button></a>
+                </td>
+                <td>
+                    <a href="delete/{{parallel_text.id}}"><button id="del">Delete</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+        {% if request.user|has_group:"Data Manager" %}
+        <a href="{% url 'add' %}"><button id="new3">Add</button></a>
+        <a href="{% url 'upload' %}"><button id="new3">Upload/Download</button></a>
+        {% endif %}
+    </div>
+</body>
+
+</html>
