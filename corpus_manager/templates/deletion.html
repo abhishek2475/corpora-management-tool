@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+{% load auth_extras %}
+
+<body>
+    <div class="container">
+        <p>Hello! {{request.user}}
+        <a href="{% url 'logout' %}"><button id="new">logout</button></a>
+        </p>
+
+        <h1>Parallel Corpus</h1>
+        
+        {% if request.user|has_group:"Data Manager" %}
+            <table id="customers" border="1">
+                <thead>
+                    <th></th>
+                    <th>English Text</th>
+                    <th>Hindi Text</th>
+                    <th>Manipuri Text</th>
+                    <th>Created at</th>
+                    <th>Verify_en_mn</th>
+                    <th>Verify_hi_mn</th>
+                    <th>Verify_en_hi</th>
+                    <th id="mid">Action</th>
+                </thead>
+                {% for deletion_request in deletion_requests %}
+                <tr>
+                    <td>
+                        <input type="checkbox" name="row-select" value="{{ deletion_request.parallel_text.id }}">
+                    </td>
+                    <td>{{ deletion_request.parallel_text.en_text }}</td>
+                    <td>{{ deletion_request.parallel_text.hi_text }}</td>
+                    <td>{{ deletion_request.parallel_text.mn_text }}</td>
+                    <td>{{ deletion_request.parallel_text.created_at }}</td>
+                    <td>{{ deletion_request.parallel_text.verify_en_mn }}</td>
+                    <td>{{ deletion_request.parallel_text.verify_hi_mn }}</td>
+                    <td>{{ deletion_request.parallel_text.verify_en_hi }}</td>
+                    <td>
+                        <a href="/home/delete/{{deletion_request.parallel_text.id}}/4"><button id="del">Delete</button></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br><br>
+        {% else %}
+            <h1>Permission Denied</h1>
+        {% endif %}
+    </div>
+</body>
+
+</html>

@@ -8,43 +8,83 @@
     <title>Update</title>
 </head>
 {% load auth_extras %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'style.css' %}">
 
 <body>
     <div class="container2">
         <h1>Update Corpus</h1>
-        <!-- <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" id="new2">Update</button>
-        </form> -->
-        <form action="" method="post">
-            {% csrf_token %}
+        {% if choice == 0 %}
+            <form action="" method="post">
+                {% csrf_token %}
 
-            <label for="id_source_text">Source Text:</label>
-            <input type="text" id="id_source_text" name="source_text" value="{{ form.source_text.value }}"><br>
+                <label for="id_en_text">English Text:</label>
+                <input type="text" id="id_en_text" name="en_text" value="{{ form.en_text.value }}"><br>
 
-            <label for="id_target_text">Target Text:</label>
-            <input type="text" id="id_target_text" name="target_text" value="{{ form.target_text.value }}"><br>
+                <label for="id_hi_text">Hindi Text:</label>
+                <input type="text" id="id_hi_text" name="hi_text" value="{{ form.hi_text.value }}"><br>
 
-            <label for="id_verification1">Verification 1:</label>
-            <input type="number" min="1" max="5" id="id_verification1" name="verification1" value="{{ form.verification1.value }}"><br>
-            
-            <label for="id_verification2">Verification 2:</label>
-            <input type="number" min="1" max="5" id="id_verification2" name="verification2" value="{{ form.verification2.value }}"><br>
-            
-            <label for="id_verification3">Verification 3:</label>
-            <input type="number" min="1" max="5" id="id_verification3" name="verification3" value="{{ form.verification3.value }}"><br>
-            
-            <label for="id_verification4">Verification 4:</label>
-            <input type="number" min="1" max="5" id="id_verification4" name="verification4" value="{{ form.verification4.value }}"><br>
-            
-            <label for="id_verification5">Verification 5:</label>
-            <input type="number" min="1" max="5" id="id_verification5" name="verification5" value="{{ form.verification5.value }}"><br>
-            
-            <button type="submit" id="new2">Update</button>
-        </form>
+                <label for="id_mn_text">Manipuri Text:</label>
+                <input type="text" id="id_mn_text" name="mn_text" value="{{ form.mn_text.value }}"><br>
+
+                <label for="id_verify_en_mn">Verify_en_mn:</label>
+                <input type="number" min="1" max="5" id="id_verify_en_mn" name="verify_en_mn" value="{{ form.verify_en_mn.value }}"><br>
+                
+                <label for="id_verify_hi_mn">Verify_hi_mn:</label>
+                <input type="number" min="1" max="5" id="id_verify_hi_mn" name="verify_hi_mn" value="{{ form.verify_hi_mn.value }}"><br>
+                
+                <label for="id_verify_en_hi">Verify_en_hi:</label>
+                <input type="number" min="1" max="5" id="id_verify_en_hi" name="verify_en_hi" value="{{ form.verify_en_hi.value }}"><br>
+                
+                <button type="submit" id="new2">Update</button>
+            </form>
+        {% elif choice == 1 %}
+            <form action="" method="post">
+                {% csrf_token %}
+
+                <label for="id_en_text">English Text:</label>
+                <input type="text" id="id_en_text" name="en_text" value="{{ form.en_text.value }}"><br>
+
+                <label for="id_hi_text">Hindi Text:</label>
+                <input type="text" id="id_hi_text" name="hi_text" value="{{ form.hi_text.value }}"><br>
+
+                <label for="id_verify_en_hi">Verify_en_hi:</label>
+                <input type="number" min="1" max="5" id="id_verify_en_hi" name="verify_en_hi" value="{{ form.verify_en_hi.value }}"><br>
+
+                <button type="submit" id="new2">Update</button>
+            </form>
+
+        {% elif choice == 2 %}
+            <form action="" method="post">
+                {% csrf_token %}
+
+                <label for="id_en_text">English Text:</label>
+                <input type="text" id="id_en_text" name="en_text" value="{{ form.en_text.value }}"><br>
+
+                <label for="id_mn_text">Manipuri Text:</label>
+                <input type="text" id="id_mn_text" name="mn_text" value="{{ form.mn_text.value }}"><br>
+
+                <label for="id_verify_en_mn">Verify_en_mn:</label>
+                <input type="number" min="1" max="5" id="id_verify_en_mn" name="verify_en_mn" value="{{ form.verify_en_mn.value }}"><br>
+
+                <button type="submit" id="new2">Update</button>
+            </form>
+
+        {% elif choice == 3 %}
+            <form action="" method="post">
+                {% csrf_token %}
+
+                <label for="id_hi_text">Hindi Text:</label>
+                <input type="text" id="id_hi_text" name="hi_text" value="{{ form.hi_text.value }}"><br>
+
+                <label for="id_mn_text">Manipuri Text:</label>
+                <input type="text" id="id_mn_text" name="mn_text" value="{{ form.mn_text.value }}"><br>
+
+                <label for="id_verify_hi_mn">Verify_hi_mn:</label>
+                <input type="number" min="1" max="5" id="id_verify_hi_mn" name="verify_hi_mn" value="{{ form.verify_hi_mn.value }}"><br>
+
+                <button type="submit" id="new2">Update</button>
+            </form>
+
+        {% endif %}
     </div>
 </body>
 
